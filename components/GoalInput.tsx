@@ -2,7 +2,9 @@ import { useState } from 'react';
 import {
   Button,
   Image,
+  KeyboardAvoidingView,
   Modal,
+  Platform,
   StyleSheet,
   TextInput,
   View,
@@ -32,7 +34,10 @@ export default function GoalInput({ visible, onAddGoal, onCancel }: Props) {
 
   return (
     <Modal visible={visible} animationType='slide'>
-      <View style={styles.inputContainer}>
+      <KeyboardAvoidingView
+        style={styles.inputContainer}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
         <Image
           source={require('../assets/images/goal.png')}
           style={styles.image}
@@ -54,7 +59,7 @@ export default function GoalInput({ visible, onAddGoal, onCancel }: Props) {
             <Button title='Add Goal' color='#b180f0' onPress={addGoalHandler} />
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }
